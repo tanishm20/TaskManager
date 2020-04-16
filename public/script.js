@@ -1,7 +1,7 @@
-var date = document.getElementById('due')
+window.onload= async function getTodos() {
+  var date = document.getElementById('due')
 var tomorrowLocal = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 - new Date().getTimezoneOffset() * 60 * 1000).toISOString().substr(0,10);
 date.value = tomorrowLocal
-window.onload= async function getTodos() {
   const resp = await fetch('/todos', { method: 'GET' })
   const todos = await resp.json()
 var i=0
