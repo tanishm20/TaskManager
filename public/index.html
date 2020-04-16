@@ -29,15 +29,6 @@
     </select>
     &emsp;&emsp;
     <button class="button button4" type="submit" id="submit">ADD</button>
-  </br>
-</br>
-  <label for="sort">Sort : &emsp; </label>
-  <input type="button" onclick="sortTable(3,'ascending')" value="Date Ascending">
-  <input type="button" onclick="sortTable(3,'descending')" value="Date Descending">
-  <input type="button" onclick="sortTable(4,'ascending')" value="Completed at Top">
-  <input type="button" onclick="sortTable(4,'descending')" value="Incompleted at Top">
-  <input type="button" onclick="sortTable(5,'ascending')" value="Priority Low to High">
-  <input type="button" onclick="sortTable(5,'descending')" value="Priority High to Low">
   </form>
 
 <table id="table" class="w3-table-all">
@@ -45,9 +36,9 @@
         <th>ID</th>
         <th>TITLE</th>
         <th>DESCRIPTION </th>
-        <th>Date</th>
-        <th>STATUS </th>
-        <th >PRIORITY</th>
+        <th onclick="sortTable(3)"><u>DATE</u></th>
+        <th onclick="sortTable(4)"><u>STATUS</u> </th>
+        <th onclick="sortTable(5)"><u>PRIORITY</u></th>
         <th>EDIT</th>
         <th>VIEW</th>
     </tr>

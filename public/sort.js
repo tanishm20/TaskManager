@@ -1,9 +1,9 @@
-function sortTable(n,direction) { 
+function sortTable(n) { 
     var table; 
     table = document.getElementById("table"); 
     var rows, i, x, y, count = 0; 
     var switching = true; 
-
+    direction="ascending"
     while (switching) { 
         switching = false; 
         var rows = table.rows; 
@@ -49,9 +49,10 @@ function sortTable(n,direction) {
             count++; 
 
         } else { 
-            if (count == 0) { 
+            if (count == 0 && direction == "ascending") { 
+                direction = "descending"; 
                 switching = true; 
-            } 
+            }  
         } 
     } 
 } 
