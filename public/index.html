@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="editRow.js"></script>
+    <script src="displayNotes.js"></script>
+    <script src="addTask.js"></script>
+    <script src="addnotes.js"></script>
+    <script src="sorting.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Tasks</h1>
+        <div class="first">
+            <table class="table table-dark" id="taskTable">
+            </table>
+            <script src="build-table.js"></script>
+        </div>
+        <br><br>
+        <h1>Add Task</h1>
+        <div class="second">
+            <br><br>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br><br>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description"><br><br>
+            <label for="date">Due Date:</label>
+            <input type="date" id="myDate" name="date"><br><br>
+            <label for="priority">Priority:</label>
+            <select id="priority">
+                <option value="high">High</option>
+                <option value="medium" selected="selected">Medium</option>
+                <option value="low">Low</option>
+            </select><br><br>
+            <label for="state">Completed:</label>
+            <input type="checkbox" id="state" disabled="disabled" name="state"><br><br>
+            <input class="btn btn-danger" type="button" id="submit" onclick="addTask()" value="Add Task">
+        </div>
+    </div>
+</body>
+</html>
