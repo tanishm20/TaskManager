@@ -90,7 +90,7 @@ route.post('/:id/notes', async (req, res) => {
   res.redirect("https://task-manager-tanishm20.herokuapp.com/")
 })
 
-route.post('/:id', async (req, res) => {
+route.patch('/:id', async (req, res) => {
   if (isNaN(Number(req.params.id))) {
     return res.status(400).send({
       error: 'todo id must be an integer',
