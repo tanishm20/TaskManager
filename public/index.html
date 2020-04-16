@@ -2,44 +2,127 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="editRow.js"></script>
-    <script src="displayNotes.js"></script>
-    <script src="addTask.js"></script>
-    <script src="addnotes.js"></script>
-    <script src="sorting.js"></script>
+    <script async defer src="script.js"></script>
+    <script src="sort.js"></script>
+    <script src="notes.js"></script>
+    <script src="edit.js"></script>
 </head>
-<body>
-    <div class="container">
-        <h1>Tasks</h1>
-        <div class="first">
-            <table class="table table-dark" id="taskTable">
-            </table>
-            <script src="build-table.js"></script>
-        </div>
-        <br><br>
-        <h1>Add Task</h1>
-        <div class="second">
-            <br><br>
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required><br><br>
-            <label for="description">Description:</label>
-            <input type="text" id="description" name="description"><br><br>
-            <label for="date">Due Date:</label>
-            <input type="date" id="myDate" name="date"><br><br>
-            <label for="priority">Priority:</label>
-            <select id="priority">
-                <option value="high">High</option>
-                <option value="medium" selected="selected">Medium</option>
-                <option value="low">Low</option>
-            </select><br><br>
-            <label for="state">Completed:</label>
-            <input type="checkbox" id="state" disabled="disabled" name="state"><br><br>
-            <input class="btn btn-danger" type="button" id="submit" onclick="addTask()" value="Add Task">
-        </div>
+<body id="body">
+    <h1>Todo List Manager</h1>
+<form action="/todos" method="POST">
+    <h2>ADD TASK</h2>
+    <label for="title">Title : &emsp;</label>
+    <input type="text" name="title" id="title" placeholder="title">
+    <label for="description">&emsp;Descripton : &emsp;</label>
+    <input type="text" name="description" id="description" placeholder="description">
+    <label for="due">&emsp;Date : &emsp;</label>
+    <input type="date" name="due" id="due">
+    <label for="priority">&emsp;Priority : &emsp;</label>
+    <select id="priority" name="priority">
+        <option value="">NAN</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+    </select>
+    &emsp;&emsp;
+    <button class="button button4" type="submit" id="submit">ADD</button>
+  </br>
+</br>
+  <label for="sort">Sort : &emsp; </label>
+  <input type="button" onclick="sortTable(3,'ascending')" value="Date Ascending">
+  <input type="button" onclick="sortTable(3,'descending')" value="Date Descending">
+  <input type="button" onclick="sortTable(4,'ascending')" value="Completed at Top">
+  <input type="button" onclick="sortTable(4,'descending')" value="Incompleted at Top">
+  <input type="button" onclick="sortTable(5,'ascending')" value="Priority Low to High">
+  <input type="button" onclick="sortTable(5,'descending')" value="Priority High to Low">
+  </form>
+
+<table id="table" class="w3-table-all">
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>DESCRIPTION </th>
+        <th>Date</th>
+        <th>STATUS </th>
+        <th >PRIORITY</th>
+        <th>EDIT</th>
+        <th>VIEW</th>
+    </tr>
+</table>
+
+
+  <div id="id01"  class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span onclick="document.getElementById('id01').style.display='none'" 
+        class="close">&times;</span>
+      </header>
+      <div class="w3-container">
+        <table id="modalContent">
+            <th id="modalHeader"></th>
+        </table>
+      </div>
+      <footer class="w3-container w3-teal">
+        <form id="addNotes"  method="POST">
+          <textarea type="text" name="notes" id="notes" placeholder="notes"
+           cols="100" rows="10" spellcheck="true" ></textarea>
+        </br>
+        <input type="submit" value="Add notes">
+        </form>
+      </footer>
     </div>
+  </div>
+</div>
+</div>
+
+
+
+<div id="id02" class="modal fade" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span onclick="document.getElementById('id02').style.display='none'" 
+      class="close">&times;</span>
+        <h2 id="modalHeader"></h2>
+      </header>
+      <div class="w3-container">
+       
+      </div>
+      <footer class="w3-container w3-teal">
+        <form id="update"  method="POST">
+          <table>
+            <tr>
+              <th>DATE</th>
+              <th>PRIORITY</th>
+              <th>STATUS</th>
+              <th>UPDATE</th>
+            </tr>
+          <tr>
+            <td> <input type="date" name="due" id="due"> </td>
+            <td><select id="priority" name="priority">
+                <option value="">NAN</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            </td>
+            <td style="text-align: center;" >
+              <input type="checkbox" id="status" name="status" value="true">
+            </td>
+        <td>
+        <input type="submit" value="update">
+        </td>
+        </tr>
+      </table>
+        </form>
+      </footer>
+    </div>
+  </div>
+</div>
+</div>
 </body>
 </html>

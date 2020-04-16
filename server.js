@@ -1,18 +1,19 @@
 const express = require('express')
-var PORT = process.env.PORT || 6534
 
 const { db } = require('./db')
-const taskRoute = require('./routes/tasks')
-
+const { dbnotes} = require('./dbnotes')
+const todoRoute = require('./routes/todos')
+const PORT = process.env.PORT ||6534
 const app = express()
 
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.use('/', express.static(__dirname + '/public'))
-app.use('/tasks', taskRoute)
 
-db.sync({alter: true})
+app.use('/todos', todoRoute)
+
+db.sync(),dbnotes.sync()
   .then(() => {
     app.listen(PORT)
   })

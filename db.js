@@ -2,67 +2,35 @@ const Sequelize = require('sequelize')
 
 const db = new Sequelize({
     dialect: 'sqlite',
-    storage: __dirname + '/tasks.db'
+    storage: __dirname + '/todos.db'
 })
 
-// returns the tommorow date
-const tommorowDate = () => {
-    const today = new Date()
-    const tommorow = new Date(today)
-    tommorow.setDate(tommorow.getDate() + 1)
-    return tommorow
-}
-
-// task table
-const Tasks = db.define('task', {
+const Todos = db.define('todo', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
     title: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
         allowNull: false
     },
     description: {
-        type: Sequelize.STRING,
-        allowNull: true
+        type: Sequelize.STRING(100)
     },
-    date: {
-        type: Sequelize.DATEONLY,
-        defaultValue: tommorowDate()
+    due: {
+        type: Sequelize.DATE
+    },
+    status: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     },
     priority: {
-        type: Sequelize.STRING,
-        defaultValue: "medium"                           
-    },
-    state: {
-        type: Sequelize.STRING,
-        defaultValue: "incomplete"                        
+        type: Sequelize.STRING(100)
     }
 })
-
-// notes table
-const Notes = db.define('notes',{
-    notesId: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    note: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    taskId:{
-        type: Sequelize.INTEGER,
-        allowNull: false
-    }
-})
-
-// one to many relationship between tasks and notes
-// Tasks.hasMany(Notes, {foreignKey: 'notesId'})
-// Notes.belongsTo(Tasks)
 
 module.exports = {
-    db, Tasks, Notes
+    db, Todos
 }
