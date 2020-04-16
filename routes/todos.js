@@ -87,7 +87,7 @@ route.post('/:id/notes', async (req, res) => {
       notes: req.body.notes,
   })
 
-  res.status(201).send({success: 'New Note added', data: newNote})
+  res.redirect("https://task-manager-tanishm20.herokuapp.com/")
 })
 
 route.post('/:id', async (req, res) => {
@@ -118,7 +118,7 @@ route.post('/:id', async (req, res) => {
   if(req.body.priority!=""){
     await todo.update({
       priority: req.body.priority})}
-  res.redirect("http://localhost:6543/")
+  res.redirect("https://task-manager-tanishm20.herokuapp.com/")
 })
 
 module.exports = route
