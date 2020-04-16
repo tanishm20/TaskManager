@@ -11,9 +11,10 @@
     <script src="edit.js"></script>
 </head>
 <body id="body">
-    <h1>Todo List Manager</h1>
+    <h1>Task Manager</h1>
 <form action="/todos" method="POST">
     <h2>ADD TASK</h2>
+    <div class="div-content">
     <label for="title">Title : &emsp;</label>
     <input type="text" name="title" id="title" placeholder="title">
     <label for="description">&emsp;Descripton : &emsp;</label>
@@ -29,6 +30,9 @@
     </select>
     &emsp;&emsp;
     <button class="button button4" type="submit" id="submit">ADD</button>
+  </br>
+</br>
+</div>
   </form>
 
 <table id="table" class="w3-table-all">
@@ -36,11 +40,11 @@
         <th>ID</th>
         <th>TITLE</th>
         <th>DESCRIPTION </th>
-        <th onclick="sortTable(3)"><u>DATE</u></th>
-        <th onclick="sortTable(4)"><u>STATUS</u> </th>
+        <th onclick="sortTable(3)"><u>Date</u></th>
+        <th onclick="sortTable(4)"><u>STATUS </u></th>
         <th onclick="sortTable(5)"><u>PRIORITY</u></th>
         <th>EDIT</th>
-        <th>VIEW</th>
+        <th>NOTES</th>
     </tr>
 </table>
 
@@ -58,6 +62,7 @@
         </table>
       </div>
       <footer class="w3-container w3-teal">
+      </br>
         <form id="addNotes"  method="POST">
           <textarea type="text" name="notes" id="notes" placeholder="notes"
            cols="100" rows="10" spellcheck="true" ></textarea>
